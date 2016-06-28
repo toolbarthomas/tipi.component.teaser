@@ -1,0 +1,15 @@
+{
+  "name": "tipi.component.teaser",
+  "homepage": "https://github.com/toolbarthomas/tipi.component.teaser",
+  "authors": [
+    "Thomas van der Velde <contact@toolbarthomas.net>"
+  ],
+  "description": "Teaser component for Tipi",
+  "keywords": [
+    "toolbarthomas",
+    "modular",
+    "teaser"
+  ],
+  "license": "MIT",
+  "main": "_tipi.component.teaser.scss"
+}
