@@ -15,6 +15,14 @@ function setTeaser() {
 		active 	: '__teaser--active'
 	};
 
+	var teaserDataAttributes = {
+		hidden : 'teaser-hidden'
+	}
+
+	var teaserOptions = {
+		hidden : false
+	};
+
 	var teaser = $('.' + teaserElements.root).not('.' + teaserElements.ready);
 	if(teaser.length > 0) {
 		teaser.each(function() {
@@ -28,6 +36,11 @@ function setTeaser() {
 			//Activate teaser if the height of the main content is higher then the introduction
 			var teaserIntroduction_height = teaserIntroduction.outerHeight();
 			var teaserMainWrapper_height = teaserMainWrapper.outerHeight();
+
+			//Teaser options
+			if(typeof teaser.data(teaserDataAttributes) != 'undefined') {
+				teaserOptions.hidden = true;
+			}
 
 			if(teaserIntroduction_height <= teaserMainWrapper_height ) {
 				teaser.addClass(teaserStates.ready);
@@ -46,7 +59,7 @@ function setTeaser() {
 					hideTeaserAction($(this), teaserElements, teaserStates);
 				},
 				'tipi.teaser.resize' : function(event) {
-					resizeTeaser($(this), teaserElements, teaserStates);
+					resizeTeaser($(this), teaserElements, teaserStates, teaserOptions);
 				}
 			});
 
@@ -121,7 +134,7 @@ function hideTeaserAction(teaser, teaserElements, teaserStates) {
 	}
 }
 
-function resizeTeaser(teaser, teaserElements, teaserStates) {
+function resizeTeaser(teaser, teaserElements, teaserStates, teaserOptions) {
 	var teaserIntroduction = getTeaserElement(teaser, 'introduction', teaserElements);
 	var teaserMain = getTeaserElement(teaser, 'main', teaserElements);
 	var teaserMainWrapper = getTeaserElement(teaser, 'mainWrapper', teaserElements);
@@ -134,10 +147,14 @@ function resizeTeaser(teaser, teaserElements, teaserStates) {
 		if(teaser.hasClass(teaserStates.active)) {
 			teaserMain_Height = teaserMainWrapper_height;
 		} else {
-			if(teaserIntroduction_height > teaserMainWrapper_height / 2) {
-				teaserMain_Height = teaserMainWrapper_height / 2;
+			if(teaserOptions.hidden) {
+				teaserMain_Height = 0;
 			} else {
-				teaserMain_Height = teaserIntroduction_height;
+				if(teaserIntroduction_height > teaserMainWrapper_height / 2) {
+					teaserMain_Height = teaserMainWrapper_height / 2;
+				} else {
+					teaserMain_Height = teaserIntroduction_height;
+				}
 			}
 		}
 

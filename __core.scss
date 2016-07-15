@@ -52,6 +52,7 @@
 
 	.teaser-actions,
 	.teaser-action {
+		cursor: pointer;
 		display: none;
 
 		.__teaser--ready & {
