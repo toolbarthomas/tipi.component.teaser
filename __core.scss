@@ -18,7 +18,7 @@
 
 			@if $teaser-transitions == true {
 				@include transition(
-					(height $transition-fast ease-out 0s)
+					(height $teaser-transition-speed $teaser-transition-timing $teaser-transition-delay)
 				);
 			}
 
@@ -36,7 +36,7 @@
 
 					@if $teaser-transitions == true {
 						@include transition(
-							(opacity $transition-fast ease-out 0s)
+							(opacity $teaser-transition-speed $teaser-transition-timing $teaser-transition-delay)
 						);
 					}
 				}
