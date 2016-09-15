@@ -92,11 +92,16 @@ function setTeaser() {
 		});
 
 		var updateEvent;
+		var documentWidth = $(document).width();
 		$(window).on({
 			resize : function() {
 				clearTimeout(updateEvent);
 				updateEvent = setTimeout(function() {
-					teaser.trigger('tipi.teaser.resize');
+					if(documentWidth != $(document).width()) {
+						teaser.trigger('tipi.teaser.resize');
+					}
+
+					documentWidth = $(document).width();
 				}, 100);
 
 			}
